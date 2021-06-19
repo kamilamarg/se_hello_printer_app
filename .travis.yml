@@ -1,8 +1,15 @@
 language: python
-
+services:
+      - docker
 python:
-  - "3.6"
+      - "3.6"
 install:
-  - make deps
+      - make deps
 script:
-  - make tests  
+      - make tests
+after_success:
+      - make docker_build
+deploy:
+  provider: heroku
+  app: SOUNDING-FIELDS-5252
+  api_key: ${HEROKU_API_KEY}

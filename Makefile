@@ -12,7 +12,7 @@ test:
 			PYTHONPATH=. py.test --verbose -s
 
 run:
-			PYTHONPATH=. FLASK_APP=hello_world run
+			PYTHONPATH=. FLASK_APP=hello_world flask run
 
 
 docker_build:
@@ -32,3 +32,6 @@ docker_push: docker_build
 			docker tag hello-world-printer $(TAG); \
 			docker push $(TAG); \
 			docker logout;
+
+test_smoke:
+			curl --fail 127.0.0.1:5000
